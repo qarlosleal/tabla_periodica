@@ -8,16 +8,15 @@ function speak(text) {
 }
 
 // Textos info (exactos)
-const infoMain =
-    1. Pulsa los diferentes símbolos para escuchar los nombres de los elementos.
-2. Cuando te sepas una columna completa 🔥, pulsa el botón de abajo para comprobar si te los sabes.;
+const infoMain = `1. Pulsa los diferentes símbolos para escuchar los nombres de los elementos.
+2. Cuando te sepas una columna completa 🔥, pulsa el botón de abajo para comprobar si te los sabes.`;
 
-const infoExam =
-    1. Escribe, en orden, el símbolo y nombre de cada elemento.
+const infoExam = `1. Escribe, en orden, el símbolo y nombre de cada elemento.
 2. Cuando lo hayas rellenado, pulsa el botón corregir 🚀
 3. Si hay algo mal, podrás cambiarlo y volver a corregir.
 4. Si te rindes 🙆‍♀️ pulsa el botón "volver".
-⚠️ En el símbolo del elemento has de escribir mayúsculas y minúsculas correctamente;
+⚠️ En el símbolo del elemento has de escribir mayúsculas y minúsculas correctamente`;
+
 
 function openInfo(where) {
     document.getElementById('modal-text').innerText = (where === 'main') ? infoMain : infoExam;
