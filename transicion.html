@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Metales de transición</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <div class="title-row">
+        <h1>Metales de transición</h1>
+        <button class="icon-btn" onclick="location.href='index.html'" title="Menú">🏠</button>
+    </div>
+
+    <div class="contenedor-tabla">
+        <div class="titulos" style="grid-template-columns: repeat(10, 90px);">
+            <div class="titulo">IIIb</div>
+            <div class="titulo">IVb</div>
+            <div class="titulo">Vb</div>
+            <div class="titulo">VIb</div>
+            <div class="titulo">VIIb</div>
+            <div class="titulo">VIIIb</div>
+            <div class="titulo">IXb</div>
+            <div class="titulo">Xb</div>
+            <div class="titulo">Ib</div>
+            <div class="titulo">IIb</div>
+        </div>
+
+        <div class="cuerpo" style="grid-template-columns: repeat(10, 90px); grid-auto-rows: 70px; margin-top:10px;">
+            <!-- FILA 1 -->
+            <button class="celda" style="grid-column:3;grid-row:1;" onclick="speak('Vanadio')">V</button>
+            <button class="celda" style="grid-column:4;grid-row:1;" onclick="speak('Cromo')">Cr</button>
+            <button class="celda" style="grid-column:5;grid-row:1;" onclick="speak('Manganeso')">Mn</button>
+            <button class="celda" style="grid-column:6;grid-row:1;" onclick="speak('Hierro')">Fe</button>
+            <button class="celda" style="grid-column:7;grid-row:1;" onclick="speak('Cobalto')">Co</button>
+            <button class="celda" style="grid-column:8;grid-row:1;" onclick="speak('Níquel')">Ni</button>
+            <button class="celda" style="grid-column:9;grid-row:1;" onclick="speak('Cobre')">Cu</button>
+            <button class="celda" style="grid-column:10;grid-row:1;" onclick="speak('Zinc')">Zn</button>
+
+            <!-- FILA 2 -->
+            <button class="celda" style="grid-column:4;grid-row:2;" onclick="speak('Molibdeno')">Mo</button>
+            <button class="celda" style="grid-column:6;grid-row:2;" onclick="speak('Rutenio')">Ru</button>
+            <button class="celda" style="grid-column:7;grid-row:2;" onclick="speak('Rodio')">Rh</button>
+            <button class="celda" style="grid-column:8;grid-row:2;" onclick="speak('Paladio')">Pd</button>
+            <button class="celda" style="grid-column:9;grid-row:2;" onclick="speak('Plata')">Ag</button>
+            <button class="celda" style="grid-column:10;grid-row:2;" onclick="speak('Cadmio')">Cd</button>
+
+            <!-- FILA 3 -->
+            <button class="celda" style="grid-column:4;grid-row:3;" onclick="speak('Wolframio')">W</button>
+            <button class="celda" style="grid-column:6;grid-row:3;" onclick="speak('Osmio')">Os</button>
+            <button class="celda" style="grid-column:7;grid-row:3;" onclick="speak('Iridio')">Ir</button>
+            <button class="celda" style="grid-column:8;grid-row:3;" onclick="speak('Platino')">Pt</button>
+            <button class="celda" style="grid-column:9;grid-row:3;" onclick="speak('Oro')">Au</button>
+            <button class="celda" style="grid-column:10;grid-row:3;" onclick="speak('Mercurio')">Hg</button>
+        </div>
+    </div>
+
+    <script src="js/transicion.js" defer></script>
+
+</body>
+
+</html>
