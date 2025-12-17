@@ -1,10 +1,34 @@
 // Voz
+<!--
 function speak(text) {
     if (!('speechSynthesis' in window)) return;
     const u = new SpeechSynthesisUtterance(text);
     u.lang = "es-ES";
     speechSynthesis.cancel();
     speechSynthesis.speak(u);
+}
+-->
+
+function speak(text){
+  if(!('speechSynthesis' in window)) return;
+
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = "es-ES";
+
+  // Ajustes estilo “Vader”
+  u.rate = 0.7;   // más lento
+  u.pitch = 0.5;  // más grave
+  u.volume = 1;
+
+  // Intentar elegir voz masculina
+  const voices = speechSynthesis.getVoices();
+  const maleVoice = voices.find(v =>
+    /male|mascul/i.test(v.name) && v.lang.startsWith('es')
+  );
+  if (maleVoice) u.voice = maleVoice;
+
+  speechSynthesis.cancel();
+  speechSynthesis.speak(u);
 }
 
 // Textos info (exactos)
