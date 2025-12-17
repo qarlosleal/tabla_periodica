@@ -6,6 +6,33 @@
     margin-top: 20px;
   }
 
+  /* ===== MENÚ PRINCIPAL ===== */
+  .menu {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 20px;
+    width: min(520px, 92vw);
+  }
+
+  .menu-btn {
+    width: 100%;
+    min-height: 70px;
+    border: 1px solid #444;
+    border-radius: 12px;
+    font-size: 22px;
+    background: #f1f1f1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .menu-btn:hover {
+    background: #e7e7e7;
+  }
+
   /* Títulos con icono al lado */
   .title-row {
     display: flex;
