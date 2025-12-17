@@ -224,13 +224,21 @@
     transform: translate(-50%, -50%);
   }
 
-  /* ✅ MODIFICACIÓN FINAL: en móvil, reducir visualmente la tabla (sin romper nada) */
-  @media (max-width: 480px){
-    .contenedor-tabla{
-      transform: scale(0.9);
-      transform-origin: top center;
-    }
+  .contenedor-tabla{
+  max-width: 100vw;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x;
+}
+
+@media (max-width: 480px){
+  .tabla-inner{
+    transform: scale(0.9);
+    transform-origin: top left;
+    display: inline-block; /* para que el ancho “cuente” bien */
   }
+}
 </style>
 </head>
 
