@@ -14,14 +14,15 @@
     margin-top:20px;
   }
 
+  /* Títulos con icono al lado */
   .title-row{
     display:flex;
     align-items:center;
     justify-content:center;
     gap:10px;
-    margin-bottom:8px;
+    margin: 0 0 8px;
   }
-  h1{ margin:0; }
+  h1{ margin:0; text-align:center; }
 
   .icon-btn{
     width:44px;
@@ -35,27 +36,26 @@
     justify-content:center;
     font-size:22px;
   }
+  .icon-btn:hover{ background:#e7e7e7; }
 
-  .contenedor-tabla{
-    display:inline-block;
-    overflow-x:auto;
-  }
+  .contenedor-tabla{ display:inline-block; }
 
-  .titulos,
-  .cuerpo,
-  .fila-examen{
+  .titulos{
     display:grid;
     grid-template-columns: repeat(9, 90px);
     gap:8px;
+    margin-top: 10px;
   }
-
   .titulo{
     text-align:center;
     font-weight:bold;
   }
 
   .cuerpo{
-    grid-auto-rows:70px;
+    display:grid;
+    grid-template-columns: repeat(9, 90px);
+    grid-auto-rows: 70px;
+    gap:8px;
     margin-top:10px;
   }
 
@@ -79,10 +79,15 @@
     align-items:center;
     font-weight:bold;
     text-align:center;
-    padding:6px;
+    padding: 6px;
   }
 
-  .fila-examen{ margin-top:20px; }
+  .fila-examen{
+    display:grid;
+    grid-template-columns: repeat(9, 90px);
+    gap:8px;
+    margin-top:20px;
+  }
 
   .exam-btn{
     width:48px;
@@ -92,40 +97,58 @@
     background:#fff3a3;
     font-size:24px;
     cursor:pointer;
-    margin:auto;
+    margin:auto; /* centrado debajo de su columna */
+    display:flex;
+    align-items:center;
+    justify-content:center;
   }
+  .exam-btn:hover{ background:#ffe46e; }
 
-  /* ====== EXAMEN ====== */
+  /* EXAMEN */
   #exam-area{
     display:none;
-    margin-top:10px;
-    width:min(720px, 96vw);
+    margin-top: 10px;
+    width: min(720px, 96vw);
   }
 
   .exam-title-row{
     display:flex;
-    justify-content:center;
     align-items:center;
+    justify-content:center;
     gap:10px;
-    margin-bottom:12px;
+    margin: 0 0 12px;
+  }
+  .exam-title-row h2{ margin:0; text-align:center; }
+
+  #exam-body{ display:flex; flex-direction:column; align-items:center; }
+
+  .exam-grid{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
   }
 
   .exam-row{
     display:grid;
     grid-template-columns: 90px 34px 230px 34px;
-    gap:10px;
     align-items:center;
+    gap:10px;
   }
 
   .exam-input{
+    width:100%;
     height:70px;
-    font-size:20px;
+    font-size:20px;       /* mismo tamaño en símbolo y nombre */
     text-align:center;
+    border:1px solid #444;
+    box-sizing:border-box;
+    background:#fff;
   }
 
   .resultado{
     font-size:22px;
     text-align:center;
+    min-height: 1em;
   }
 
   .circle-btn{
@@ -133,31 +156,51 @@
     width:90px;
     height:90px;
     border-radius:50%;
+    cursor:pointer;
     border:2px solid #444;
     background:#e0e0e0;
     font-size:22px;
-    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
   }
+  .circle-btn:hover{ background:#d4d4d4; }
 
-  /* ====== MODAL ====== */
+  #resumen{ text-align:center; margin-top: 10px; }
+
+  /* MODAL INFO */
   .modal{
     display:none;
     position:fixed;
     inset:0;
-    background:rgba(0,0,0,0.55);
+    background: rgba(0,0,0,0.55);
     justify-content:center;
     align-items:center;
     z-index:1000;
+    padding: 16px;
   }
-
   .modal-content{
     background:#fff;
     width:min(560px, 92vw);
     border-radius:12px;
-    padding:14px;
+    border:2px solid #333;
+    padding: 14px 14px 12px;
+  }
+  .modal-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .modal-head h3{ margin:0; font-size:18px; }
+  .modal-text{
+    white-space:pre-line;
+    line-height: 1.35;
+    font-size:16px;
   }
 
-  /* ====== EFECTOS ====== */
+  /* EFECTOS */
   #fx{
     position:fixed;
     inset:0;
@@ -166,16 +209,22 @@
     display:none;
   }
 
+  /* Palabras TOP/GOAT (se posicionan dinámicamente) */
   .word{
     position:fixed;
-    font-size:64px;
-    font-weight:900;
-    display:none;
     z-index:2001;
-    transform:translate(-50%,-50%);
+    display:none;
+    font-weight:900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 64px;
+    text-shadow: 0 6px 0 rgba(0,0,0,0.15);
+    pointer-events:none;
+    user-select:none;
+    transform: translate(-50%, -50%);
   }
 
-  /* 🔥 MODIFICACIÓN FINAL PARA MÓVIL 🔥 */
+  /* ✅ MODIFICACIÓN FINAL: en móvil, reducir visualmente la tabla (sin romper nada) */
   @media (max-width: 480px){
     .contenedor-tabla{
       transform: scale(0.85);
@@ -187,11 +236,13 @@
 
 <body>
 
+<!-- TÍTULO PRINCIPAL + INFO -->
 <div class="title-row">
   <h1>Tabla periódica</h1>
-  <button class="icon-btn" onclick="openInfo('main')">ℹ️</button>
+  <button class="icon-btn" onclick="openInfo('main')" title="Información">ℹ️</button>
 </div>
 
+<!-- TABLA PRINCIPAL -->
 <div id="tabla-principal">
   <div class="contenedor-tabla">
 
@@ -210,36 +261,441 @@
 
     <!-- CUERPO -->
     <div class="cuerpo">
-      <button class="celda" style="grid-column:1;grid-row:1" onclick="speak('Hidrógeno')">H</button>
-      <div class="bloque" style="grid-column:9;grid-row:1/7">Gases nobles</div>
-      <button class="celda" style="grid-column:1;grid-row:2" onclick="speak('Litio')">Li</button>
-      <button class="celda" style="grid-column:2;grid-row:2" onclick="speak('Berilio')">Be</button>
-      <button class="celda" style="grid-column:4;grid-row:2" onclick="speak('Boro')">B</button>
-      <button class="celda" style="grid-column:5;grid-row:2" onclick="speak('Carbono')">C</button>
-      <button class="celda" style="grid-column:6;grid-row:2" onclick="speak('Nitrógeno')">N</button>
-      <button class="celda" style="grid-column:7;grid-row:2" onclick="speak('Oxígeno')">O</button>
-      <button class="celda" style="grid-column:8;grid-row:2" onclick="speak('Flúor')">F</button>
-      <!-- resto igual -->
+
+      <!-- FILA 1 -->
+      <button class="celda" style="grid-column:1; grid-row:1" onclick="speak('Hidrógeno')">H</button>
+
+      <!-- GASES NOBLES (hasta At) -->
+      <div class="bloque" style="grid-column:9; grid-row:1 / 7;">Gases nobles</div>
+
+      <!-- FILA 2 -->
+      <button class="celda" style="grid-column:1; grid-row:2" onclick="speak('Litio')">Li</button>
+      <button class="celda" style="grid-column:2; grid-row:2" onclick="speak('Berilio')">Be</button>
+      <button class="celda" style="grid-column:4; grid-row:2" onclick="speak('Boro')">B</button>
+      <button class="celda" style="grid-column:5; grid-row:2" onclick="speak('Carbono')">C</button>
+      <button class="celda" style="grid-column:6; grid-row:2" onclick="speak('Nitrógeno')">N</button>
+      <button class="celda" style="grid-column:7; grid-row:2" onclick="speak('Oxígeno')">O</button>
+      <button class="celda" style="grid-column:8; grid-row:2" onclick="speak('Flúor')">F</button>
+
+      <!-- FILA 3 -->
+      <button class="celda" style="grid-column:1; grid-row:3" onclick="speak('Sodio')">Na</button>
+      <button class="celda" style="grid-column:2; grid-row:3" onclick="speak('Magnesio')">Mg</button>
+      <button class="celda" style="grid-column:4; grid-row:3" onclick="speak('Aluminio')">Al</button>
+      <button class="celda" style="grid-column:5; grid-row:3" onclick="speak('Silicio')">Si</button>
+      <button class="celda" style="grid-column:6; grid-row:3" onclick="speak('Fósforo')">P</button>
+      <button class="celda" style="grid-column:7; grid-row:3" onclick="speak('Azufre')">S</button>
+      <button class="celda" style="grid-column:8; grid-row:3" onclick="speak('Cloro')">Cl</button>
+
+      <!-- FILA 4 -->
+      <button class="celda" style="grid-column:1; grid-row:4" onclick="speak('Potasio')">K</button>
+      <button class="celda" style="grid-column:2; grid-row:4" onclick="speak('Calcio')">Ca</button>
+
+      <div class="bloque" style="grid-column:3; grid-row:4 / 7;">Metales de transición</div>
+
+      <button class="celda" style="grid-column:4; grid-row:4" onclick="speak('Galio')">Ga</button>
+      <button class="celda" style="grid-column:5; grid-row:4" onclick="speak('Germanio')">Ge</button>
+      <button class="celda" style="grid-column:6; grid-row:4" onclick="speak('Arsénico')">As</button>
+      <button class="celda" style="grid-column:7; grid-row:4" onclick="speak('Selenio')">Se</button>
+      <button class="celda" style="grid-column:8; grid-row:4" onclick="speak('Bromo')">Br</button>
+
+      <!-- FILA 5 -->
+      <button class="celda" style="grid-column:1; grid-row:5" onclick="speak('Rubidio')">Rb</button>
+      <button class="celda" style="grid-column:2; grid-row:5" onclick="speak('Estroncio')">Sr</button>
+      <button class="celda" style="grid-column:4; grid-row:5" onclick="speak('Indio')">In</button>
+      <button class="celda" style="grid-column:5; grid-row:5" onclick="speak('Estaño')">Sn</button>
+      <button class="celda" style="grid-column:6; grid-row:5" onclick="speak('Antimonio')">Sb</button>
+      <button class="celda" style="grid-column:7; grid-row:5" onclick="speak('Telurio')">Te</button>
+      <button class="celda" style="grid-column:8; grid-row:5" onclick="speak('Yodo')">I</button>
+
+      <!-- FILA 6 -->
+      <button class="celda" style="grid-column:1; grid-row:6" onclick="speak('Cesio')">Cs</button>
+      <button class="celda" style="grid-column:2; grid-row:6" onclick="speak('Bario')">Ba</button>
+      <button class="celda" style="grid-column:4; grid-row:6" onclick="speak('Talio')">Tl</button>
+      <button class="celda" style="grid-column:5; grid-row:6" onclick="speak('Plomo')">Pb</button>
+      <button class="celda" style="grid-column:6; grid-row:6" onclick="speak('Bismuto')">Bi</button>
+      <button class="celda" style="grid-column:7; grid-row:6" onclick="speak('Polonio')">Po</button>
+      <button class="celda" style="grid-column:8; grid-row:6" onclick="speak('Astato')">At</button>
+
+      <!-- FILA 7 -->
+      <button class="celda" style="grid-column:1; grid-row:7" onclick="speak('Francio')">Fr</button>
+      <button class="celda" style="grid-column:2; grid-row:7" onclick="speak('Radio')">Ra</button>
+
     </div>
 
+    <!-- BOTONES EXAMEN (sin transición ni gases nobles) -->
     <div class="fila-examen">
-      <button class="exam-btn" onclick="openExam('Ia')">📝</button>
-      <button class="exam-btn" onclick="openExam('IIa')">📝</button>
+      <button class="exam-btn" onclick="openExam('Ia')" title="Examen">📝</button>
+      <button class="exam-btn" onclick="openExam('IIa')" title="Examen">📝</button>
       <div></div>
-      <button class="exam-btn" onclick="openExam('IIIa')">📝</button>
-      <button class="exam-btn" onclick="openExam('IVa')">📝</button>
-      <button class="exam-btn" onclick="openExam('Va')">📝</button>
-      <button class="exam-btn" onclick="openExam('VIa')">📝</button>
-      <button class="exam-btn" onclick="openExam('VIIa')">📝</button>
+      <button class="exam-btn" onclick="openExam('IIIa')" title="Examen">📝</button>
+      <button class="exam-btn" onclick="openExam('IVa')" title="Examen">📝</button>
+      <button class="exam-btn" onclick="openExam('Va')" title="Examen">📝</button>
+      <button class="exam-btn" onclick="openExam('VIa')" title="Examen">📝</button>
+      <button class="exam-btn" onclick="openExam('VIIa')" title="Examen">📝</button>
       <div></div>
     </div>
 
   </div>
 </div>
 
-<!-- JS ORIGINAL COMPLETO (sin cambios) -->
+<!-- PANTALLA EXAMEN -->
+<div id="exam-area">
+  <div class="exam-title-row">
+    <h2 id="exam-title">Examen</h2>
+    <button class="icon-btn" onclick="openInfo('exam')" title="Información">ℹ️</button>
+  </div>
+  <div id="exam-body"></div>
+</div>
+
+<!-- MODAL INFO -->
+<div class="modal" id="modal" onclick="backdropClose(event)">
+  <div class="modal-content">
+    <div class="modal-head">
+      <h3>Información</h3>
+      <button class="icon-btn" onclick="closeModal()" title="Cerrar">✖️</button>
+    </div>
+    <div id="modal-text" class="modal-text"></div>
+  </div>
+</div>
+
+<!-- EFECTOS -->
+<canvas id="fx"></canvas>
+<div id="word-top" class="word">TOP</div>
+<div id="word-goat" class="word">GOAT</div>
+
 <script>
-  /* tu JavaScript tal como lo tenías */
+  // Voz
+  function speak(text){
+    if(!('speechSynthesis' in window)) return;
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = "es-ES";
+    speechSynthesis.cancel();
+    speechSynthesis.speak(u);
+  }
+
+  // Textos info (exactos)
+  const infoMain =
+`1. Pulsa los diferentes símbolos para escuchar los nombres de los elementos.
+2. Cuando te sepas una columna completa 🔥, pulsa el botón de abajo para comprobar si te los sabes.`;
+
+  const infoExam =
+`1. Escribe, en orden, el símbolo y nombre de cada elemento.
+2. Cuando lo hayas rellenado, pulsa el botón corregir 🚀
+3. Si hay algo mal, podrás cambiarlo y volver a corregir.
+4. Si te rindes 🙆‍♀️ pulsa el botón "volver".
+⚠️ En el símbolo del elemento has de escribir mayúsculas y minúsculas correctamente`;
+
+  function openInfo(where){
+    document.getElementById('modal-text').innerText = (where === 'main') ? infoMain : infoExam;
+    document.getElementById('modal').style.display = 'flex';
+  }
+  function closeModal(){
+    document.getElementById('modal').style.display = 'none';
+  }
+  function backdropClose(e){
+    if(e.target && e.target.id === 'modal') closeModal();
+  }
+  document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeModal(); });
+
+  // Datos columnas
+  const columnas = {
+    "Ia": [
+      {symbol:"H",  name:"Hidrógeno"},
+      {symbol:"Li", name:"Litio"},
+      {symbol:"Na", name:"Sodio"},
+      {symbol:"K",  name:"Potasio"},
+      {symbol:"Rb", name:"Rubidio"},
+      {symbol:"Cs", name:"Cesio"},
+      {symbol:"Fr", name:"Francio"},
+    ],
+    "IIa": [
+      {symbol:"Be", name:"Berilio"},
+      {symbol:"Mg", name:"Magnesio"},
+      {symbol:"Ca", name:"Calcio"},
+      {symbol:"Sr", name:"Estroncio"},
+      {symbol:"Ba", name:"Bario"},
+      {symbol:"Ra", name:"Radio"},
+    ],
+    "IIIa": [
+      {symbol:"B",  name:"Boro"},
+      {symbol:"Al", name:"Aluminio"},
+      {symbol:"Ga", name:"Galio"},
+      {symbol:"In", name:"Indio"},
+      {symbol:"Tl", name:"Talio"},
+    ],
+    "IVa": [
+      {symbol:"C",  name:"Carbono"},
+      {symbol:"Si", name:"Silicio"},
+      {symbol:"Ge", name:"Germanio"},
+      {symbol:"Sn", name:"Estaño"},
+      {symbol:"Pb", name:"Plomo"},
+    ],
+    "Va": [
+      {symbol:"N",  name:"Nitrógeno"},
+      {symbol:"P",  name:"Fósforo"},
+      {symbol:"As", name:"Arsénico"},
+      {symbol:"Sb", name:"Antimonio"},
+      {symbol:"Bi", name:"Bismuto"},
+    ],
+    "VIa": [
+      {symbol:"O",  name:"Oxígeno"},
+      {symbol:"S",  name:"Azufre"},
+      {symbol:"Se", name:"Selenio"},
+      {symbol:"Te", name:"Telurio"},
+      {symbol:"Po", name:"Polonio"},
+    ],
+    "VIIa": [
+      {symbol:"F",  name:"Flúor"},
+      {symbol:"Cl", name:"Cloro"},
+      {symbol:"Br", name:"Bromo"},
+      {symbol:"I",  name:"Yodo"},
+      {symbol:"At", name:"Astato"},
+    ],
+  };
+
+  let columnaActual = null;
+
+  function normalizar(str){
+    return str.toLowerCase().trim()
+      .normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+  }
+
+  function openExam(col){
+    columnaActual = col;
+
+    // UI
+    document.getElementById('tabla-principal').style.display = 'none';
+    document.querySelector('.title-row').style.display = 'none';
+    document.getElementById('exam-area').style.display = 'block';
+
+    document.getElementById('exam-title').innerText = `Examen ${col}`;
+
+    const datos = columnas[col];
+    const examBody = document.getElementById('exam-body');
+
+    let html = `<div class="exam-grid">`;
+
+    datos.forEach((el,i)=>{
+      html += `
+        <div class="exam-row">
+          <input class="exam-input" id="sym-${i}" placeholder="Símbolo">
+          <div class="resultado" id="res-sym-${i}"></div>
+          <input class="exam-input" id="name-${i}" placeholder="Nombre">
+          <div class="resultado" id="res-name-${i}"></div>
+        </div>
+      `;
+    });
+
+    html += `</div>
+      <div style="display:flex; justify-content:center; gap:14px;">
+        <button class="circle-btn" onclick="resolver()" title="Corregir">✔️</button>
+        <button class="circle-btn" onclick="cerrarExamen()" title="Volver">↩️</button>
+      </div>
+      <p id="resumen"></p>
+    `;
+
+    examBody.innerHTML = html;
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  function resolver(){
+    const datos = columnas[columnaActual];
+    let aciertos = 0;
+    let errores = 0;
+
+    datos.forEach((el,i)=>{
+      const symInput = document.getElementById(`sym-${i}`);
+      const nameInput = document.getElementById(`name-${i}`);
+
+      const sym = symInput.value.trim();
+      const name = nameInput.value;
+
+      const okSym = (sym === el.symbol);                 // símbolo exacto (mayús/minús)
+      const okName = (normalizar(name) === normalizar(el.name)); // nombre sin tildes/mayús
+
+      const boxSym = document.getElementById(`res-sym-${i}`);
+      const boxName = document.getElementById(`res-name-${i}`);
+
+      // símbolo: ✅ si acierta, si falla en blanco
+      if(okSym){
+        boxSym.textContent = "✅";
+        symInput.style.backgroundColor = "#c8f7c5";
+        aciertos++;
+      } else {
+        boxSym.textContent = "";
+        symInput.style.backgroundColor = "#f7c5c5";
+        errores++;
+      }
+
+      // nombre: ✅ si acierta, si falla en blanco
+      if(okName){
+        boxName.textContent = "✅";
+        nameInput.style.backgroundColor = "#c8f7c5";
+        aciertos++;
+      } else {
+        boxName.textContent = "";
+        nameInput.style.backgroundColor = "#f7c5c5";
+        errores++;
+      }
+    });
+
+    const total = datos.length * 2;
+    const resumen = document.getElementById('resumen');
+    resumen.textContent = `Aciertos: ${aciertos} · Errores: ${errores} (de ${total})`;
+
+    if(aciertos === total){
+      celebrateAllCorrect();
+    }
+  }
+
+  function cerrarExamen(){
+    closeModal();
+    document.getElementById('exam-area').style.display = 'none';
+    document.getElementById('tabla-principal').style.display = 'block';
+    document.querySelector('.title-row').style.display = 'flex';
+    document.getElementById('exam-body').innerHTML = '';
+    columnaActual = null;
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  // ====== CELEBRACIÓN: 3 fuegos + TOP/GOAT (colores y posiciones variables, NO a la vez) ======
+  const fx = document.getElementById('fx');
+  const ctx = fx.getContext('2d');
+  let particles = [];
+  let raf = null;
+  let fxHideTimer = null;
+
+  function resizeFx(){
+    fx.width = window.innerWidth;
+    fx.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resizeFx);
+  resizeFx();
+
+  function celebrateAllCorrect(){
+    // Palabras: una detrás de otra, diferentes posiciones y colores
+    showWordsSequential();
+
+    // 3 explosiones consecutivas desde 3 sitios distintos
+    const spots = [
+      { x: fx.width * 0.22, y: fx.height * 0.38 },
+      { x: fx.width * 0.78, y: fx.height * 0.32 },
+      { x: fx.width * 0.50, y: fx.height * 0.48 },
+    ];
+
+    burstAt(spots[0].x, spots[0].y);
+    setTimeout(()=>burstAt(spots[1].x, spots[1].y), 450);
+    setTimeout(()=>burstAt(spots[2].x, spots[2].y), 900);
+  }
+
+  function randColor(){
+    return `hsl(${Math.floor(Math.random()*360)}, 90%, 55%)`;
+  }
+
+  function pickPos(exclude){
+    // margen para que no salga pegado al borde
+    const marginX = 90;
+    const marginY = 90;
+    const x = marginX + Math.random() * (window.innerWidth - marginX*2);
+    const y = marginY + Math.random() * (window.innerHeight * 0.65 - marginY*2);
+
+    if(!exclude) return {x,y};
+
+    // si está muy cerca, reintenta unas cuantas veces
+    let px = x, py = y;
+    for(let k=0;k<12;k++){
+      const dx = px - exclude.x;
+      const dy = py - exclude.y;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      if(dist > 220) break;
+      px = marginX + Math.random() * (window.innerWidth - marginX*2);
+      py = marginY + Math.random() * (window.innerHeight * 0.65 - marginY*2);
+    }
+    return {x:px, y:py};
+  }
+
+  function showWord(el, text, pos){
+    el.textContent = text;
+    el.style.left = `${pos.x}px`;
+    el.style.top  = `${pos.y}px`;
+    el.style.color = randColor();
+    el.style.display = 'block';
+  }
+
+  function hideWord(el){
+    el.style.display = 'none';
+  }
+
+  function showWordsSequential(){
+    const topEl = document.getElementById('word-top');
+    const goatEl = document.getElementById('word-goat');
+
+    hideWord(topEl);
+    hideWord(goatEl);
+
+    const posTop = pickPos(null);
+    showWord(topEl, "TOP", posTop);
+
+    // TOP desaparece
+    setTimeout(()=>hideWord(topEl), 650);
+
+    // GOAT aparece después, en otro sitio y otro color
+    const posGoat = pickPos(posTop);
+    setTimeout(()=>{
+      showWord(goatEl, "GOAT", posGoat);
+      setTimeout(()=>hideWord(goatEl), 650);
+    }, 700);
+  }
+
+  function burstAt(x,y){
+    resizeFx();
+    fx.style.display = 'block';
+
+    const count = 140;
+    for(let i=0;i<count;i++){
+      const angle = Math.random()*Math.PI*2;
+      const speed = 3 + Math.random()*6;
+      particles.push({
+        x, y,
+        vx: Math.cos(angle)*speed,
+        vy: Math.sin(angle)*speed - 2,
+        g: 0.10 + Math.random()*0.10,
+        life: 85 + Math.random()*35,
+        size: 3 + Math.random()*4,
+        c: `hsl(${Math.floor(Math.random()*360)}, 90%, 55%)`,
+      });
+    }
+
+    if(raf === null){
+      raf = requestAnimationFrame(loopFx);
+    }
+
+    if(fxHideTimer) clearTimeout(fxHideTimer);
+    fxHideTimer = setTimeout(()=>{ fx.style.display = 'none'; }, 2300);
+  }
+
+  function loopFx(){
+    ctx.clearRect(0,0,fx.width,fx.height);
+
+    particles.forEach(p=>{
+      p.vy += p.g;
+      p.x += p.vx;
+      p.y += p.vy;
+      p.life -= 1;
+
+      ctx.fillStyle = p.c;
+      ctx.fillRect(p.x, p.y, p.size, p.size);
+    });
+
+    particles = particles.filter(p=>p.life>0 && p.y < fx.height + 30);
+
+    if(particles.length){
+      raf = requestAnimationFrame(loopFx);
+    } else {
+      raf = null;
+      fx.style.display = 'none';
+    }
+  }
 </script>
 
 </body>
