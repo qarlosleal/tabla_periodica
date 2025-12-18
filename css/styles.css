@@ -305,7 +305,11 @@
     background: #d4d4d4;
   }
 
-  button.celda{
-  border:1px solid #444;
-  background:#f1f1f1;
-}
+  button.celda {
+    border: 1px solid #444;
+    background: #f1f1f1;
+  }
+
+  .val-btn {
+    font-size: 20px;
+  }
