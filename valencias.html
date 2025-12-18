@@ -15,7 +15,8 @@
 </div>
 
 <div class="contenedor-tabla">
-  <!-- Misma idea de rejilla: 9 columnas como tu tabla principal -->
+
+  <!-- TÍTULOS (igual que aprender.html) -->
   <div class="titulos">
     <div class="titulo">Ia</div>
     <div class="titulo">IIa</div>
@@ -28,51 +29,62 @@
     <div class="titulo">VIIIa</div>
   </div>
 
+  <!-- CUERPO (botón grande por columna) -->
   <div class="cuerpo">
-    <!-- fila única con botones por grupo -->
-    <button class="celda val-btn" style="grid-column:1; grid-row:1"
+
+    <!-- Ia -->
+    <button class="bloque col-btn" style="grid-column:1; grid-row:1 / 8;"
             onclick="speak('Grupo Ia. Valencia 1')">
-      Ia
+      H<br>Li<br>Na<br>K<br>Rb<br>Cs<br>Fr
     </button>
 
-    <button class="celda val-btn" style="grid-column:2; grid-row:1"
+    <!-- IIa -->
+    <button class="bloque col-btn" style="grid-column:2; grid-row:1 / 8;"
             onclick="speak('Grupo IIa. Valencia 2')">
-      IIa
+      Be<br>Mg<br>Ca<br>Sr<br>Ba<br>Ra
     </button>
 
-    <button class="celda val-btn" style="grid-column:4; grid-row:1"
-            onclick="speak('Grupo IIIa. Valencias 1 y 3')">
-      IIIa
-    </button>
-
-    <button class="celda val-btn" style="grid-column:5; grid-row:1"
-            onclick="speak('Grupo IVa. Valencias 2 y 4')">
-      IVa
-    </button>
-
-    <button class="celda val-btn" style="grid-column:6; grid-row:1"
-            onclick="speak('Grupo Va. Valencias 1, 3 y 5')">
-      Va
-    </button>
-
-    <button class="celda val-btn" style="grid-column:7; grid-row:1"
-            onclick="speak('Grupo VIa. Valencias 2, 4 y 6')">
-      VIa
-    </button>
-
-    <button class="celda val-btn" style="grid-column:8; grid-row:1"
-            onclick="speak('Grupo VIIa. Valencias 1, 3, 5 y 7')">
-      VIIa
-    </button>
-
-    <div class="bloque" style="grid-column:9; grid-row:1;">
-      VIIIa
+    <!-- hueco como en tu dibujo -->
+    <div class="bloque" style="grid-column:3; grid-row:2 / 7; background:#f7f7f7;">
+      <!-- vacío a propósito -->
     </div>
-  </div>
 
-  <p style="text-align:center; margin-top:14px; max-width:720px;">
-    Pulsa un grupo para escuchar sus valencias.
-  </p>
+    <!-- IIIa -->
+    <button class="bloque col-btn" style="grid-column:4; grid-row:2 / 7;"
+            onclick="speak('Grupo IIIa. Valencias 1 y 3')">
+      B<br>Al<br>Ga<br>In<br>Tl
+    </button>
+
+    <!-- IVa -->
+    <button class="bloque col-btn" style="grid-column:5; grid-row:2 / 7;"
+            onclick="speak('Grupo IVa. Valencias 2 y 4')">
+      C<br>Si<br>Ge<br>Sn<br>Pb
+    </button>
+
+    <!-- Va -->
+    <button class="bloque col-btn" style="grid-column:6; grid-row:2 / 7;"
+            onclick="speak('Grupo Va. Valencias 1, 3 y 5')">
+      N<br>P<br>As<br>Sb<br>Bi
+    </button>
+
+    <!-- VIa -->
+    <button class="bloque col-btn" style="grid-column:7; grid-row:2 / 7;"
+            onclick="speak('Grupo VIa. Valencias 2, 4 y 6')">
+      O<br>S<br>Se<br>Te<br>Po
+    </button>
+
+    <!-- VIIa -->
+    <button class="bloque col-btn" style="grid-column:8; grid-row:2 / 7;"
+            onclick="speak('Grupo VIIa. Valencias 1, 3, 5 y 7')">
+      F<br>Cl<br>Br<br>I<br>At
+    </button>
+
+    <!-- VIIIa (en tu dibujo queda “vacía”; la dejamos como bloque sin voz) -->
+    <div class="bloque" style="grid-column:9; grid-row:2 / 7;">
+      <!-- vacío a propósito -->
+    </div>
+
+  </div>
 </div>
 
 <script src="js/valencias.js" defer></script>
