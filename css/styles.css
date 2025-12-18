@@ -331,23 +331,35 @@
   /* ===== VALENCIAS: columnas agrupadas con alineación por periodos ===== */
   .valencias-cuerpo {
     grid-auto-rows: 70px;
-    /* asegura las 7 filas como en aprender.html */
   }
 
-  .col-btn {
-    cursor: pointer;
+  /* contenedor alto solo para alinear */
+  .col-wrap {
+    display: grid;
+    grid-template-rows: repeat(7, 70px);
+    width: 100%;
+    height: 100%;
+  }
+
+  /* botón ajustado: solo ocupa donde hay elementos */
+  .col-btn.fit {
     padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
     background: #e0e0e0;
     border: 1px solid #444;
   }
 
-  .col-btn:hover {
+  .col-btn.fit:hover {
     background: #d4d4d4;
   }
 
+  /* rejilla interna: tantas filas como elementos tenga el grupo */
   .col-grid {
     display: grid;
-    grid-template-rows: repeat(7, 70px);
+    grid-auto-rows: 70px;
     width: 100%;
     height: 100%;
   }
