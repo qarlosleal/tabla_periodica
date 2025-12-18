@@ -1,40 +1,62 @@
-function speak(text){
-  if(!('speechSynthesis' in window)) return;
-  const u = new SpeechSynthesisUtterance(text);
-  u.lang = "es-ES";
-  speechSynthesis.cancel();
-  speechSynthesis.speak(u);
-}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Valencias · Metales de transición</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/styles.css">
+</head>
 
-const trans = {
-  V:  { name:"Vanadio",   vals:[2,3,4,5] },
-  Cr: { name:"Cromo",     vals:[2,3,6] },
-  Mn: { name:"Manganeso", vals:[2,4,7] },
-  Fe: { name:"Hierro",    vals:[2,3] },
-  Co: { name:"Cobalto",   vals:[2,3] },
-  Ni: { name:"Níquel",    vals:[2,3] },
-  Cu: { name:"Cobre",     vals:[1,2] },
-  Zn: { name:"Zinc",      vals:[2] },
+<body>
 
-  Mo: { name:"Molibdeno", vals:[4,6] },
-  Ru: { name:"Rutenio",   vals:[3,4,8] },
-  Rh: { name:"Rodio",     vals:[3] },
-  Pd: { name:"Paladio",   vals:[2,4] },
-  Ag: { name:"Plata",     vals:[1] },
-  Cd: { name:"Cadmio",    vals:[2] },
+<div class="title-row">
+  <h1>Valencias · Transición</h1>
+  <button class="icon-btn" onclick="location.href='valencias.html'" title="Volver">↩️</button>
+</div>
 
-  W:  { name:"Wolframio", vals:[6] },
-  Os: { name:"Osmio",     vals:[4,6,8] },
-  Ir: { name:"Iridio",    vals:[3,4] },
-  Pt: { name:"Platino",   vals:[2,4] },
-  Au: { name:"Oro",       vals:[1,3] },
-  Hg: { name:"Mercurio",  vals:[1,2] },
-};
+<div class="contenedor-tabla">
+  <div class="titulos" style="grid-template-columns: repeat(10, 90px);">
+    <div class="titulo">IIIb</div>
+    <div class="titulo">IVb</div>
+    <div class="titulo">Vb</div>
+    <div class="titulo">VIb</div>
+    <div class="titulo">VIIb</div>
+    <div class="titulo">VIIIb</div>
+    <div class="titulo">IXb</div>
+    <div class="titulo">Xb</div>
+    <div class="titulo">Ib</div>
+    <div class="titulo">IIb</div>
+  </div>
 
-function speakVal(sym){
-  const el = trans[sym];
-  if(!el) return;
-  speak(`${el.name}. Valencias: ${el.vals.join(', ')}.`);
-}
+  <div class="cuerpo" style="grid-template-columns: repeat(10, 90px); grid-auto-rows: 70px; margin-top:10px;">
+    <!-- FILA 1 -->
+    <button class="celda" style="grid-column:3;grid-row:1;" onclick="speakVal('V')">V</button>
+    <button class="celda" style="grid-column:4;grid-row:1;" onclick="speakVal('Cr')">Cr</button>
+    <button class="celda" style="grid-column:5;grid-row:1;" onclick="speakVal('Mn')">Mn</button>
+    <button class="celda" style="grid-column:6;grid-row:1;" onclick="speakVal('Fe')">Fe</button>
+    <button class="celda" style="grid-column:7;grid-row:1;" onclick="speakVal('Co')">Co</button>
+    <button class="celda" style="grid-column:8;grid-row:1;" onclick="speakVal('Ni')">Ni</button>
+    <button class="celda" style="grid-column:9;grid-row:1;" onclick="speakVal('Cu')">Cu</button>
+    <button class="celda" style="grid-column:10;grid-row:1;" onclick="speakVal('Zn')">Zn</button>
 
+    <!-- FILA 2 -->
+    <button class="celda" style="grid-column:4;grid-row:2;" onclick="speakVal('Mo')">Mo</button>
+    <button class="celda" style="grid-column:6;grid-row:2;" onclick="speakVal('Ru')">Ru</button>
+    <button class="celda" style="grid-column:7;grid-row:2;" onclick="speakVal('Rh')">Rh</button>
+    <button class="celda" style="grid-column:8;grid-row:2;" onclick="speakVal('Pd')">Pd</button>
+    <button class="celda" style="grid-column:9;grid-row:2;" onclick="speakVal('Ag')">Ag</button>
+    <button class="celda" style="grid-column:10;grid-row:2;" onclick="speakVal('Cd')">Cd</button>
 
+    <!-- FILA 3 -->
+    <button class="celda" style="grid-column:4;grid-row:3;" onclick="speakVal('W')">W</button>
+    <button class="celda" style="grid-column:6;grid-row:3;" onclick="speakVal('Os')">Os</button>
+    <button class="celda" style="grid-column:7;grid-row:3;" onclick="speakVal('Ir')">Ir</button>
+    <button class="celda" style="grid-column:8;grid-row:3;" onclick="speakVal('Pt')">Pt</button>
+    <button class="celda" style="grid-column:9;grid-row:3;" onclick="speakVal('Au')">Au</button>
+    <button class="celda" style="grid-column:10;grid-row:3;" onclick="speakVal('Hg')">Hg</button>
+  </div>
+</div>
+
+<script src="js/valenciasmettrans.js" defer></script>
+</body>
+</html>
